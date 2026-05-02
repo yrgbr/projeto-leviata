@@ -18,7 +18,7 @@ Todos os números foram certificados via ECPP (usando PARI/GP e Primo) e submeti
 
 ## 🚀 Como visualizar
 
-O site do projeto está disponível em: `https://seu-usuario.github.io/projeto-leviata` (substitua pelo link do GitHub Pages).
+O site do projeto está disponível em: (https://github.com/yrgbr)
 
 ## 📜 Licença
 
