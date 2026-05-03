@@ -21,9 +21,17 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+        
+        #google_translate_element {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+        }
+
         header { 
             background: linear-gradient(135deg, var(--header-gradient-start), var(--header-gradient-end)); 
-            color: white; padding: 3rem 1rem; text-align: center; position: relative; overflow: hidden; 
+            color: white; padding: 4rem 1rem 3rem 1rem; text-align: center; position: relative; overflow: hidden; 
         }
         header::before { 
             content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
@@ -31,6 +39,7 @@
         }
         header h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; position: relative; z-index: 1; }
         header p { font-size: 1.1rem; opacity: 0.9; position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+        
         .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
         .card { 
             background: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; 
@@ -58,34 +67,52 @@
             padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.72rem; margin-left: 0.5rem; 
             font-family: 'Segoe UI', system-ui, sans-serif; 
         }
-        .links a { 
-            display: inline-block; margin-right: 1rem; color: var(--accent-light); text-decoration: none; font-weight: 600; 
+        .links { 
+            display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; 
         }
-        .links a:hover { text-decoration: underline; }
-        footer { text-align: center; padding: 1.5rem; color: var(--text-secondary); font-size: 0.85rem; }
+        .links a {
+            display: inline-block; padding: 0.5rem 1rem; background: #eff6ff; color: var(--accent);
+            text-decoration: none; border-radius: 20px; font-weight: 600; transition: background 0.2s;
+        }
+        .links a:hover { background: #dbeafe; }
+        
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            #google_translate_element { position: static; text-align: center; background: #1e3a8a; padding: 5px; }
+            header { padding-top: 1rem; }
+        }
     </style>
 </head>
 <body>
+
+    <div id="google_translate_element"></div>
+
     <header>
         <h1>🏆 Projeto LEVIATA</h1>
         <p><strong>268 Emirps Trinomiais</strong> — uma nova família de primos reversíveis da forma <em>10<sup>x</sup> + c·10<sup>y</sup> + k</em></p>
     </header>
+
     <main class="container">
         <div class="card">
             <h2>🧑‍🔬 Sobre o Projeto</h2>
-            <p>Meu nome é <strong>Yuri Ganda</strong> e este é o resultado de meses de pesquisa independente. Desenvolvi um algoritmo de busca que vasculhou milhões de candidatos até encontrar uma família de <strong>268 números primos reversíveis (emirps)</strong> que compartilham a mesma estrutura algébrica trinomial. O maior deles possui <strong>6.867 dígitos</strong>. Todos os números foram certificados via ECPP e submetidos ao Factordb.</p>
+            <p>Meu nome é <strong>Yuri Ganda</strong> e este projeto documenta a descoberta de uma família de <strong>268 números primos reversíveis (emirps)</strong> trinomiais. O maior deles possui <strong>6.867 dígitos</strong>. O algoritmo utiliza a biblioteca GMP com testes de Miller-Rabin e certificação via ECPP.</p>
             <div class="stats">
                 <span class="stat">🔢 268 emirps</span>
-                <span class="stat">📏 4 a 6.867 dígitos</span>
-                <span class="stat">✅ Certificados via ECPP &amp; PARI/GP</span>
-                <span class="stat">🌐 Registrados no Factordb e PrimePages</span>
+                <span class="stat">📏 Até 6.867 dígitos</span>
+                <span class="stat">✅ Certificados via ECPP</span>
+                <span class="stat">🌐 Registrados no Factordb</span>
+            </div>
+            <div class="links">
+                <a href="https://t5k.org/bios/page.php?id=6066" target="_blank">🏛️ PrimePages (Yuri Ganda)</a>
+                <a href="https://github.com/yrgbr/projeto-leviata" target="_blank">💻 GitHub</a>
             </div>
         </div>
+
         <div class="card">
             <h2>📋 Lista Completa dos 268 Emirps Trinomiais</h2>
             <p>Cada link leva ao registro oficial no <strong>Factordb</strong>, onde a primalidade de cada número está certificada.</p>
             <div class="prime-list">
-<!-- ########## INÍCIO DA LISTA (GERADA AUTOMATICAMENTE) ########## -->
                 <a href="http://factordb.com/index.php?query=10%5E3%2B1*10%5E2%2B3" target="_blank">10^3 + 1·10^2 + 3 <span class="badge">4 dígitos</span></a>
                 <a href="http://factordb.com/index.php?query=10%5E3%2B1*10%5E2%2B9" target="_blank">10^3 + 1·10^2 + 9 <span class="badge">4 dígitos</span></a>
                 <a href="http://factordb.com/index.php?query=10%5E3%2B2*10%5E1%2B1" target="_blank">10^3 + 2·10^1 + 1 <span class="badge">4 dígitos</span></a>
@@ -354,19 +381,25 @@
                 <a href="http://factordb.com/index.php?query=10%5E2689%2B6*10%5E14%2B9" target="_blank">10^2689 + 6·10^14 + 9 <span class="badge">2690 dígitos</span></a>
                 <a href="http://factordb.com/index.php?query=10%5E4953%2B2*10%5E11%2B1" target="_blank">10^4953 + 2·10^11 + 1 <span class="badge">4954 dígitos</span></a>
                 <a href="http://factordb.com/index.php?query=10%5E6866%2B8*10%5E8%2B1" target="_blank">10^6866 + 8·10^8 + 1 <span class="badge">6867 dígitos</span></a>
-<!-- ########## FIM DA LISTA ########## -->
-            </div>
-        </div>
-        <div class="card">
-            <h2>🔗 Links Oficiais</h2>
-            <div class="links">
-                <a href="https://t5k.org/bios/page.php?id=6066" target="_blank">🏛️ PrimePages (Yuri Ganda)</a>
-                <a href="http://factordb.com/certoverview.php?userid=705" target="_blank">📜 Certificados no Factordb</a>
             </div>
         </div>
     </main>
+
     <footer>
-        <p>© 2026 Yuri Ganda — Projeto LEVIATA. Todos os números foram certificados via ECPP e submetidos ao Factordb.</p>
+        <p>© 2026 Yuri Ganda — Pesquisa Independente em Teoria dos Números Computacional.</p>
     </footer>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'en,es,fr,de,zh-CN',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
